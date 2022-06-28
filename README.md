@@ -7,11 +7,15 @@
     children = [
         # Result Armazena os resultados que os workers vão enviar
         LetterCount.Result,
+
         # File Reader lê um arquivo e guarda esse buffer em uma lista para cada linha
         # [linha1,linha2,linhaN]
+        # não esquecer de adicionar texto ao file_to_read.txt
         {LetterCount.FileReader , "./file_to_read.txt"},
+
         # Supervisor Dinamico responsavel por gerenciar os workers que o Gatherer precisa
         LetterCount.WorkerSupervisor,
+        
         # Gerencia quantidade de Workers que vão processar, decide quando o programa para de executar
         # primeiro parametro é quantidade de workers e o segundo a letra que ira pesquisar no texto
         {LetterCount.Gatherer, { 1 , 'p'} }
